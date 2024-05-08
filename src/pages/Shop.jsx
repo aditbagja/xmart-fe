@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import BarangCard from "../components/BarangCard";
 
 const Shop = () => {
+  const navigate = useNavigate();
   return (
     <section className="w-full py-10">
       <div className="container mx-auto">
@@ -28,7 +30,9 @@ const Shop = () => {
                 <p className="font-bold text-lg">
                   Total Harga: <span>Rp. 10000</span>
                 </p>
-                <button className="mt-3 bg-sky-500 hover:bg-white border hover:border-gray-300 py-2 px-4 rounded-lg text-white hover:text-sky-500 font-bold ease-in-out duration-300">
+                <button
+                  onClick={() => navigate("/shop/save-transaction")}
+                  className="mt-3 bg-sky-500 hover:bg-white border hover:border-gray-300 py-2 px-4 rounded-lg text-white hover:text-sky-500 font-bold ease-in-out duration-300">
                   Simpan Transaksi
                 </button>
               </div>

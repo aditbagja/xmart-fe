@@ -3,7 +3,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Shop from "./pages/Shop";
 import Layout from "./Layout";
-import Test from "./pages/Test";
+import TransaksiDetail from "./pages/TransaksiDetail";
+import HistoriTransaksi from "./pages/HistoriTransaksi";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/shop" element={<Layout />}>
           <Route index element={<Shop />} />
-          <Route path="/shop/test" element={<Test />} />
+          <Route path="/shop/save-transaction" element={<TransaksiDetail />} />
+          <Route path="/shop/transaksi" element={<HistoriTransaksi />} />
         </Route>
       </Routes>
     </Router>
