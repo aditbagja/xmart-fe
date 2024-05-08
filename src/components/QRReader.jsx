@@ -31,16 +31,12 @@ const QRReader = () => {
         overlay: qrBoxEl.current,
       });
 
-      scanner?.current
-        ?.start()
+      scanner.current
+        .start()
         .then(() => setQrOn(true))
         .catch((error) => {
           if (error) setQrOn(false);
         });
-    }
-
-    if (!videoEl?.current) {
-      scanner.current.stop();
     }
   }, []);
 
@@ -53,10 +49,12 @@ const QRReader = () => {
 
   useEffect(() => {
     if (scannedResult) {
-      localStorage.setItem("qrcode", scannedResult);
+      sessionStorage.setItem("qrcode", scannedResult);
 
       setTimeout(() => {
         navigate("/dashboard");
+        setQrOn(false);
+        scanner.current.stop();
       }, 2000);
     }
   }, [navigate, scannedResult]);
