@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="hidden lg:grid grid-cols-3 gap-3">
             <div className="flex gap-5 text-white my-auto font-bold">
               <Link to="/shop/transaksi">Histori Transaksi</Link>
-              <Link to="/shop/data">Master Data</Link>
+              <a href="/shop/data">Master Data</a>
             </div>
             <Link to="/shop">
               <img
