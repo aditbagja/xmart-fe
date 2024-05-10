@@ -5,6 +5,7 @@ import Shop from "./pages/Shop";
 import Layout from "./Layout";
 import TransaksiDetail from "./pages/TransaksiDetail";
 import HistoriTransaksi from "./pages/HistoriTransaksi";
+import MasterData from "./pages/MasterData";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Shop />} />
           <Route path="/shop/save-transaction" element={<TransaksiDetail />} />
           <Route path="/shop/transaksi" element={<HistoriTransaksi />} />
+          <Route path="/shop/data" element={<MasterData />} />
         </Route>
       </Routes>
     </Router>
