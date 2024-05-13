@@ -6,21 +6,27 @@ import Layout from "./Layout";
 import TransaksiDetail from "./pages/TransaksiDetail";
 import HistoriTransaksi from "./pages/HistoriTransaksi";
 import MasterData from "./pages/MasterData";
+import ApolloAppProvider from "./utils/ApolloAppProvider";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/shop" element={<Layout />}>
-          <Route index element={<Shop />} />
-          <Route path="/shop/save-transaction" element={<TransaksiDetail />} />
-          <Route path="/shop/transaksi" element={<HistoriTransaksi />} />
-          <Route path="/shop/data" element={<MasterData />} />
-        </Route>
-      </Routes>
-    </Router>
+    <ApolloAppProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/shop" element={<Layout />}>
+            <Route index element={<Shop />} />
+            <Route
+              path="/shop/save-transaction"
+              element={<TransaksiDetail />}
+            />
+            <Route path="/shop/transaksi" element={<HistoriTransaksi />} />
+            <Route path="/shop/data" element={<MasterData />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ApolloAppProvider>
   );
 }
 

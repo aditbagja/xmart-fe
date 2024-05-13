@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.3",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
     "flowbite": "^2.3.0",
+    "graphql": "^16.8.1",
     "qr-scanner": "^1.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
