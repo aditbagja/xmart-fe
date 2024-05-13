@@ -3,10 +3,13 @@ import QRCode from "react-qr-code";
 import { getDetailCustomer } from "../utils/apis";
 import { rupiah } from "../utils/currency-formatter";
 import { useNavigate } from "react-router-dom";
+import Table from "../components/Table";
+import { formattedTimestamp } from "../utils/timestamp-formatter";
 
 const Dashboard = () => {
   const qrCode = sessionStorage.getItem("qrcode");
   const [customerData, setCustomerData] = useState();
+  const [transaksiData, setTransaksiData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -17,6 +20,7 @@ const Dashboard = () => {
           const response = await getDetailCustomer(qrCode);
           const data = response.data;
           setCustomerData(data.customer);
+          setTransaksiData(data.transaksi);
           setIsLoading(false);
         } catch (error) {
           console.log("Error fetchCustomerData: " + error.message);
@@ -26,6 +30,8 @@ const Dashboard = () => {
 
     fetchCustomerData();
   }, [qrCode, isLoading]);
+
+  console.log(transaksiData);
 
   return (
     <section className="w-full py-32">
@@ -56,9 +62,36 @@ const Dashboard = () => {
             onClick={() => {
               navigate("/shop");
             }}
-            className="mx-auto py-2 px-6 rounded-lg bg-sky-500 hover:bg-white hover:border hover:border-gray-300 text-white hover:text-sky-500 duration-300 ease-in-out font-bold text-center">
+            className="mx-auto py-2 px-6 rounded-lg bg-sky-500 hover:bg-white border hover:border-gray-300 text-white hover:text-sky-500 duration-300 ease-in-out font-bold text-center">
             Mulai Belanja
           </button>
+          <div className="flex flex-col gap-5 px-2 md:px-5">
+            <h1 className="text-center font-bold text-lg">Histori Transaksi</h1>
+            <Table tableName="transaksi">
+              {transaksiData?.map((data) => (
+                <>
+                  <td className="border border-black text-center">
+                    {data.transaksiId}
+                  </td>
+                  <td className="border border-black text-center">
+                    {data.customer.qrcode}
+                  </td>
+                  <td className="border border-black text-center">
+                    {data.barang.rfid}
+                  </td>
+                  <td className="border border-black text-center">
+                    {rupiah(data.barang.hargaSatuan)}
+                  </td>
+                  <td className="border border-black text-center">
+                    {data.jumlah}
+                  </td>
+                  <td className="border border-black text-center">
+                    {formattedTimestamp(data.waktuTransaksi)}
+                  </td>
+                </>
+              ))}
+            </Table>
+          </div>
         </div>
       </div>
     </section>
