@@ -15,7 +15,7 @@ const Table = ({ tableName, children }) => {
         "RFID",
         "Harga Satuan",
         "Jumlah",
-        "Waktu Pesan",
+        "Waktu Transaksi",
       ]);
     }
   }, [tableName]);
