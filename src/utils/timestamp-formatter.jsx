@@ -20,7 +20,6 @@ export const formattedTimestamp = (timestamp) => {
     ? new Date(Number(timestamp))
     : new Date(timestamp);
 
-  // const date = new Date(timestamp);
   return `${date.getDate()} ${
     bulan[date.getMonth()]
   } ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;

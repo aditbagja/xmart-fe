@@ -6,8 +6,6 @@ const Table = ({ tableName, children }) => {
   useEffect(() => {
     if (tableName === "barang") {
       setTableHead(["RFID", "Nama Barang", "Harga Satuan"]);
-    } else if (tableName === "customer") {
-      setTableHead(["Qr Code", "Nama Customer", "Wallet"]);
     } else if (tableName === "transaksi") {
       setTableHead([
         "Transaksi Id",
