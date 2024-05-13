@@ -69,7 +69,7 @@ const Dashboard = () => {
             <h1 className="text-center font-bold text-lg">Histori Transaksi</h1>
             <Table tableName="transaksi">
               {transaksiData?.map((data) => (
-                <>
+                <tr key={data.transaksiId}>
                   <td className="border border-black text-center">
                     {data.transaksiId}
                   </td>
@@ -88,7 +88,7 @@ const Dashboard = () => {
                   <td className="border border-black text-center">
                     {formattedTimestamp(data.waktuTransaksi)}
                   </td>
-                </>
+                </tr>
               ))}
             </Table>
           </div>

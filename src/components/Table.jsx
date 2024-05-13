@@ -32,9 +32,7 @@ const Table = ({ tableName, children }) => {
             ))}
           </tr>
         </thead>
-        <tbody>
-          <tr>{children}</tr>
-        </tbody>
+        <tbody>{children}</tbody>
       </table>
     </div>
   );

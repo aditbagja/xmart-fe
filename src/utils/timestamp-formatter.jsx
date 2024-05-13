@@ -14,7 +14,13 @@ export const formattedTimestamp = (timestamp) => {
     "Desember",
   ];
 
-  const date = new Date(timestamp);
+  const isMilliseconds = /^\d+$/.test(timestamp);
+
+  const date = isMilliseconds
+    ? new Date(Number(timestamp))
+    : new Date(timestamp);
+
+  // const date = new Date(timestamp);
   return `${date.getDate()} ${
     bulan[date.getMonth()]
   } ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
