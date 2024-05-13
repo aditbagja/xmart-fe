@@ -56,7 +56,7 @@ const Dashboard = () => {
             </p>
           </div>
           <p className="text-center font-bold text-sm md:text-lg 2xl:text-2xl">
-            Wallet Kamu: <span>Rp. {rupiah(customerData?.wallet)}</span>
+            Wallet Kamu: <span>{rupiah(customerData?.wallet)}</span>
           </p>
           <button
             onClick={() => {
