@@ -5,18 +5,22 @@ import QRBarangReader from "../components/QRBarangReader";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_TO_CART, DELETE_FROM_CART, GET_CART } from "../utils/graphql";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { rupiah } from "../utils/currency-formatter";
+import { addCartData } from "../utils/redux/slice";
 
 const Shop = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const barangState = useSelector((state) => state.barang.barang);
-
-  console.log({ barangState });
 
   const qrcode = sessionStorage.getItem("qrcode");
   const [cartData, setCartData] = useState();
   const [barangRfid, setBarangRfid] = useState();
+
+  let totalHarga = cartData?.reduce((total, item) => {
+    return total + item.hargaSatuan * item.jumlah;
+  }, 0);
 
   const { data, refetch } = useQuery(GET_CART, {
     variables: { qrcode },
@@ -61,6 +65,13 @@ const Shop = () => {
     refetch();
   };
 
+  const handleSaveCart = () => {
+    dispatch(addCartData({ cartData, qrcode }));
+    setTimeout(() => {
+      navigate("/shop/save-transaction");
+    }, 1000);
+  };
+
   return (
     <section className="w-full py-10">
       <div className="container mx-auto">
@@ -101,24 +112,17 @@ const Shop = () => {
 
                   <div>
                     <p className="font-bold text-lg">
-                      Total Harga:{" "}
-                      <span>
-                        {rupiah(
-                          cartData.reduce((total, item) => {
-                            return total + item.hargaSatuan * item.jumlah;
-                          }, 0)
-                        )}
-                      </span>
+                      Total Harga: <span>{rupiah(totalHarga)}</span>
                     </p>
                     <button
-                      onClick={() => navigate("/shop/save-transaction")}
+                      onClick={handleSaveCart}
                       className="mt-3 bg-sky-500 hover:bg-white border hover:border-gray-300 py-2 px-4 rounded-lg text-white hover:text-sky-500 font-bold ease-in-out duration-300">
                       Simpan Transaksi
                     </button>
                   </div>
                 </>
               ) : (
-                <p>cart kosong</p>
+                <b className="text-lg">Cart Kosong</b>
               )}
             </div>
           </div>

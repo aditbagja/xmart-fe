@@ -68,3 +68,16 @@ export const DELETE_FROM_CART = gql`
     }
   }
 `;
+
+export const SAVE_TRANSAKSI = gql`
+  mutation tambahTransaksi($transaksi: [TransaksiInput!]) {
+    tambahTransaksi(transaksi: $transaksi) {
+      _id
+      qrcode
+      rfid
+      hargaSatuan
+      jumlah
+      waktuTransaksi
+    }
+  }
+`;
