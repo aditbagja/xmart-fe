@@ -3,13 +3,18 @@ import Table from "../components/Table";
 import { GET_CUSTOMER_TRANSAKSI } from "../utils/graphql";
 import { rupiah } from "../utils/currency-formatter";
 import { formattedTimestamp } from "../utils/timestamp-formatter";
+import { useEffect } from "react";
 
 const HistoriTransaksi = () => {
   const qrcode = sessionStorage.getItem("qrcode");
 
-  const { data } = useQuery(GET_CUSTOMER_TRANSAKSI, {
+  const { data, refetch } = useQuery(GET_CUSTOMER_TRANSAKSI, {
     variables: { qrcode },
   });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <section className="w-full py-16">
