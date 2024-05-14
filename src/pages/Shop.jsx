@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useNavigate } from "react-router-dom";
 import QRBarangReader from "../components/QRBarangReader";
 import { useMutation, useQuery } from "@apollo/client";
